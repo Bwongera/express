@@ -1,8 +1,19 @@
-const PORT = 3000
 
 import express from "express"
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express()
-app.get("/user",(req,res)=>{return res.status(200).json({message:"Hello guys"})})
+const db = process.env.DATABASE_URL
+const port = process.env.PORT
+app.get("/user",(req,res)=>{return res.status(200).json({message:"Good Morning"})})
  
-app.listen(PORT,()=>{console.log(`server running on ${PORT}`)})
+app.listen(port,()=>{console.log(`server running on ${port}`)})
+
+mongoose.connect(db).then(()=>{
+    console.log("Database successfuly connected")
+}).catch((error)=>{
+    console.log(`Fail to connect to database because: ${error}`)
+})
