@@ -2,8 +2,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-import authRouter from "./src/routes/authRouter.js"
 import { connectDb } from "./src/database/db.js";
+import { StatusCodes } from "http-status-codes";
+import router from "./src/routes/index.js"
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,7 +20,16 @@ app.listen(PORT,()=>{
 
 connectDb()
 
-app.use("/api/v1",authRouter)
+app.use("/api/v1",router)
+
+
+
+app.use((req,res)=>{
+    res.status(StatusCodes.BAD_GATEWAY).json({
+        success:false,
+        message:"Router not found"
+    })
+})
 
 
 
