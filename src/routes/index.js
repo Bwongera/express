@@ -5,7 +5,8 @@ import CategoryRouter from "./categoryRouter.js"
 
 const router = express.Router()
 
- router.use("/auth", authRouter)
- router.use("/category", CategoryRouter)
+ router.use("/auth", authRouter);
+ router.use("/category", CategoryRouter);
+ 
 
 export default router

@@ -1,11 +1,13 @@
 import express from "express";
 import Controller from "../controller/authController.js";
 import userExist from "../middleware/existingUser.js";
+import { userValidations,validateUser } from "../middleware/userValidator.js";
 
 const router = express.Router()
 
-router.post("/signup",userExist,Controller.signup) 
-router.get("/users/:id",Controller.getAllUsers)
+router.post("/signup",userExist, userValidations,validateUser,Controller.signup) 
+router.post("/login",Controller.login)
+router.get("/users",Controller.getAllUsers)
 router.get("/users/:id",Controller.getOneUser)
 router.patch("/users/:id",Controller.updateUser)
 router.delete("/users/:id",Controller.deleteUser)

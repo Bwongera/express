@@ -1,7 +1,11 @@
 import bcrypt from "bcrypt"
 
-function hashPassword (password){
+const hashPassword =(password)=>{
     return bcrypt.hash(password,10)
 }
+
+const comparePassword=(password,hashedPassword)=>{
+    return bcrypt.compare(password,hashedPassword)
+}
  
-export default hashPassword
+export  {hashPassword, comparePassword}

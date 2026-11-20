@@ -23,7 +23,6 @@ connectDb()
 app.use("/api/v1",router)
 
 
-
 app.use((req,res)=>{
     res.status(StatusCodes.BAD_GATEWAY).json({
         success:false,
